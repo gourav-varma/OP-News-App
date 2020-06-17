@@ -69,13 +69,9 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
-          // gradient: RadialGradient(
-          //   colors: [Colors.yellow,Colors.orange,Colors.deepOrangeAccent],
-          //   radius: 0.9
-          // ),
-          color: Colors.white
-        ),
+        color: Colors.white,
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[

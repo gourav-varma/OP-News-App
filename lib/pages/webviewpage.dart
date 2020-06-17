@@ -20,12 +20,12 @@ class _ArticleWebViewState extends State<ArticleWebView> {
           title: Row(
         children: <Widget>[
           Text(
-            "News",
+            "OP ",
             style: TextStyle(
                 fontWeight: FontWeight.bold, color: Colors.grey[400], fontSize: 23),
           ),
           Text(
-            "Today",
+            "NEWS",
             style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: Colors.blue[400],

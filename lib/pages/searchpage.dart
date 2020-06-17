@@ -10,10 +10,13 @@ class CountryPage extends StatefulWidget {
   _CountryPageState createState() => _CountryPageState();
 }
 
-class _CountryPageState extends State<CountryPage> {
+class _CountryPageState extends State<CountryPage> with AutomaticKeepAliveClientMixin<CountryPage>{
   List<Article> articles = List<Article>();
   TextEditingController searchController = TextEditingController();
   bool _loading = true;
+
+  @override
+  bool get wantKeepAlive => true;
 
   fetchSearchArticles() async {
     SearchNews allNews = SearchNews();

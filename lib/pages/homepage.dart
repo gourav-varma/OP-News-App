@@ -9,11 +9,13 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin<HomePage>{
   List<Article> articles = List<Article>();
   List<Article> scrollArticles = List<Article>();
   bool _loading = true;
 
+  @override
+  bool get wantKeepAlive => true;
 
   fetchArticles() async {
     News allNews = News();
@@ -45,11 +47,10 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    return  _loading ? Expanded(
-              child: Container(
+    return  _loading ? Container(
           alignment: Alignment.center,
-          child: Container(child: CircularProgressIndicator()),),
-      ) :SingleChildScrollView(
+          child: Container(child: CircularProgressIndicator()),)
+      : SingleChildScrollView(
       child: Column(
         children: <Widget>[
           Stack(
@@ -170,8 +171,6 @@ class ArticleTile extends StatelessWidget {
                     child: Image.network(
                       imageUrl,
                       height: 100,
-
-                      ///TODO: adjust height
                       width: 100,
                       fit: BoxFit.fill,
                     ),

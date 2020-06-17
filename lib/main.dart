@@ -24,8 +24,8 @@ class MyApp extends StatelessWidget {
         accentColor: Colors.grey ///circular progress indicator
         ),
       home: 
-      Home()
-      // SplashScreen()
+      // Home()
+      SplashScreen()
     );
   }
 }

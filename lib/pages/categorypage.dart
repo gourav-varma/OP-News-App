@@ -10,17 +10,20 @@ class CategoryPage extends StatefulWidget {
   _CategoryPageState createState() => _CategoryPageState();
 }
 
-class _CategoryPageState extends State<CategoryPage> {
+class _CategoryPageState extends State<CategoryPage> with AutomaticKeepAliveClientMixin<CategoryPage> {
   List<Article> articles = List<Article>();
   bool _loading = true;
   String category = "general";
   String categoryName = "NATIONAL";
+
+  @override
+  bool get wantKeepAlive => true;
+
   fetchArticles(category) async {
     CategoryNews allNews = CategoryNews();
     await allNews.getNews(category);
     articles = allNews.news;
     if (mounted) {
-      
     setState(() {
       _loading = false;
     });
