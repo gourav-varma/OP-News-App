@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:newstoday_app/models/article.dart';
 import 'package:newstoday_app/fetchers/homenews.dart';
@@ -168,8 +169,8 @@ class ArticleTile extends StatelessWidget {
                     borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(15),
                         topLeft: Radius.circular(15)),
-                    child: Image.network(
-                      imageUrl,
+                    child: CachedNetworkImage(
+                      imageUrl: imageUrl,
                       height: 100,
                       width: 100,
                       fit: BoxFit.fill,

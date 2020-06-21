@@ -23,7 +23,6 @@ class CategoryNews extends ChangeNotifier {
           Article article = Article(
               title: index['title'],
               urlToImage: index['urlToImage'],
-              publishedAt: DateTime.parse(index['publishedAt']).toString(),
               source: index['source']['name'],
               url: index['url']);
           news.add(article);

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:newstoday_app/fetchers/categorynews.dart';
 import 'package:newstoday_app/models/article.dart';
@@ -148,7 +149,6 @@ class _CategoryPageState extends State<CategoryPage> with AutomaticKeepAliveClie
                               imageUrl: articles[index].urlToImage,
                               title: articles[index].title,
                               url: articles[index].url,
-                              publishedAt: articles[index].publishedAt,
                               source: articles[index].source,
                               category: categoryName,
                             );
@@ -188,12 +188,11 @@ class CategoryTile extends StatelessWidget {
 }
 
 class ArticleTile extends StatelessWidget {
-  final String imageUrl, title, publishedAt, source, url, category;
+  final String imageUrl, title, source, url, category;
   final Color colors;
   ArticleTile(
       {@required this.imageUrl,
       @required this.title,
-      @required this.publishedAt,
       @required this.source,
       @required this.url,
       this.category,
@@ -240,7 +239,7 @@ class ArticleTile extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    width: width / 1.6,
+                    width: width / 1.45,
                     height: 100,
                     child: Stack(
                       children: <Widget>[
@@ -256,21 +255,6 @@ class ArticleTile extends StatelessWidget {
                             width: width / 1.5,
                           ),
                         ),
-
-                        ///TODO: source and publishedAt
-                        // Row(
-                        //   mainAxisAlignment: MainAxisAlignment.end,
-                        //   crossAxisAlignment: CrossAxisAlignment.end,
-                        //   children: <Widget>[
-                        //     Text(
-                        //       "Sources: $source",
-                        //       style: TextStyle(
-                        //           fontSize: 10,
-                        //           fontWeight: FontWeight.w500,
-                        //           color: Colors.grey),
-                        //     ),
-                        //   ],
-                        // )
                       ],
                     ),
                   ),

@@ -10,7 +10,8 @@ class CountryPage extends StatefulWidget {
   _CountryPageState createState() => _CountryPageState();
 }
 
-class _CountryPageState extends State<CountryPage> with AutomaticKeepAliveClientMixin<CountryPage>{
+class _CountryPageState extends State<CountryPage>
+    with AutomaticKeepAliveClientMixin<CountryPage> {
   List<Article> articles = List<Article>();
   TextEditingController searchController = TextEditingController();
   bool _loading = true;
@@ -18,10 +19,10 @@ class _CountryPageState extends State<CountryPage> with AutomaticKeepAliveClient
   @override
   bool get wantKeepAlive => true;
 
-  fetchSearchArticles() async {
+  fetchSearchArticles(search) async {
     SearchNews allNews = SearchNews();
     try {
-      await allNews.searchNews(searchController.text);
+      await allNews.searchNews(search);
       articles = allNews.news;
     } catch (e) {
       print(e);
@@ -52,7 +53,7 @@ class _CountryPageState extends State<CountryPage> with AutomaticKeepAliveClient
                     if (searchController.text.isNotEmpty) {
                       setState(() {
                         searchController.text;
-                        fetchSearchArticles();
+                        fetchSearchArticles(searchController.text);
                         Provider.of<SearchNews>(context, listen: false)
                             .searchNews(searchController.text);
                       });
@@ -71,7 +72,173 @@ class _CountryPageState extends State<CountryPage> with AutomaticKeepAliveClient
           Consumer<SearchNews>(
             builder: (context, search, child) => Container(
                 child: _loading
-                    ? NoSearch()
+                    ? Column(
+                        children: <Widget>[
+                          NoSearch(),
+                          Container(
+                            width: width / 1.1,
+                            child: Row(
+                              children: <Widget>[
+                                GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      String search = "modi";
+                                      fetchSearchArticles(search);
+                                      Provider.of<SearchNews>(context,
+                                              listen: false)
+                                          .searchNews(search);
+                                    });
+                                  },
+                                  child: SuggestionTile(
+                                    text: "Narendra Modi",
+                                    widths: 180,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 5),
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      String search = "movies";
+                                      fetchSearchArticles(search);
+                                      Provider.of<SearchNews>(context,
+                                              listen: false)
+                                          .searchNews(search);
+                                    });
+                                  },
+                                  child: SuggestionTile(
+                                    text: "Movies",
+                                    widths: 100,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(vertical: 5),
+                          ),
+                          Container(
+                            width: width / 1.1,
+                            child: Row(
+                              children: <Widget>[
+                                GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      String search = "cricket";
+                                      fetchSearchArticles(search);
+                                      Provider.of<SearchNews>(context,
+                                              listen: false)
+                                          .searchNews(search);
+                                    });
+                                  },
+                                  child: SuggestionTile(
+                                    text: "Cricket",
+                                    widths: 100,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 5),
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      String search = "elon musk";
+                                      fetchSearchArticles(search);
+                                      Provider.of<SearchNews>(context,
+                                              listen: false)
+                                          .searchNews(search);
+                                    });
+                                  },
+                                  child: SuggestionTile(
+                                    text: "Elon Musk",
+                                    widths: 130,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 5),
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      String search = "apple";
+                                      fetchSearchArticles(search);
+                                      Provider.of<SearchNews>(context,
+                                              listen: false)
+                                          .searchNews(search);
+                                    });
+                                  },
+                                  child: SuggestionTile(
+                                    text: "Apple",
+                                    widths: 100,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(vertical: 5),
+                          ),
+                          Container(
+                            width: width / 1.1,
+                            child: Row(
+                              children: <Widget>[
+                                GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      String search = "technology";
+                                      fetchSearchArticles(search);
+                                      Provider.of<SearchNews>(context,
+                                              listen: false)
+                                          .searchNews(search);
+                                    });
+                                  },
+                                  child: SuggestionTile(
+                                    text: "Technology",
+                                    widths: 130,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 5),
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      String search = "gaming";
+                                      fetchSearchArticles(search);
+                                      Provider.of<SearchNews>(context,
+                                              listen: false)
+                                          .searchNews(search);
+                                    });
+                                  },
+                                  child: SuggestionTile(
+                                    text: "Gaming",
+                                    widths: 100,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 5),
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      String search = "google";
+                                      fetchSearchArticles(search);
+                                      Provider.of<SearchNews>(context,
+                                              listen: false)
+                                          .searchNews(search);
+                                    });
+                                  },
+                                  child: SuggestionTile(
+                                    text: "Google",
+                                    widths: 100,
+                                  ),
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      )
                     : articles.length != 0
                         ? ListView.builder(
                             shrinkWrap: true,
@@ -112,7 +279,7 @@ class SearchTile extends StatelessWidget {
       },
       child: Container(
         height: 100,
-
+        // width: width/2,
         ///TODO: adjust height
         margin: EdgeInsets.all(10),
         decoration: BoxDecoration(
@@ -148,7 +315,7 @@ class SearchTile extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    width: width / 1.6,
+                    width: width / 1.5,
                     child: Column(
                       children: <Widget>[
                         Padding(
@@ -163,21 +330,6 @@ class SearchTile extends StatelessWidget {
                           ),
                           width: width / 1.5,
                         ),
-
-                        ///TODO: source and publishedAt
-                        // Row(
-                        //   mainAxisAlignment: MainAxisAlignment.end,
-                        //   crossAxisAlignment: CrossAxisAlignment.end,
-                        //   children: <Widget>[
-                        //     Text(
-                        //       "Sources: $source",
-                        //       style: TextStyle(
-                        //           fontSize: 10,
-                        //           fontWeight: FontWeight.w500,
-                        //           color: Colors.grey),
-                        //     ),
-                        //   ],
-                        // )
                       ],
                     ),
                   ),
@@ -198,8 +350,8 @@ class NoSearch extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     return Container(
       margin: EdgeInsets.all(30),
-      height: height / 2,
-      width: width,
+      height: height / 5,
+      width: width / 1.1,
       child: Column(
         children: <Widget>[
           Container(
@@ -233,49 +385,60 @@ class NoSearch extends StatelessWidget {
               ),
             ],
           ),
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 6),
-          ),
-          Row(
-            children: <Widget>[
-              SuggestionTile(
-                text: "Narendra Modi",
-                widths: 180,
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 5),
-              ),
-              SuggestionTile(
-                text: "Movies",
-                widths: 100,
-              )
-            ],
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 5),
-          ),
-          Row(
-            children: <Widget>[
-              SuggestionTile(
-                text: "Cricket",
-                widths: 100,
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 5),
-              ),
-              SuggestionTile(
-                text: "Elon Musk",
-                widths: 130,
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 5),
-              ),
-              SuggestionTile(
-                text: "Apple",
-                widths: 100,
-              )
-            ],
-          )
+          // Padding(
+          //   padding: EdgeInsets.symmetric(vertical: 6),
+          // ),
+          // Container(
+          //   width: width / 1.1,
+          //   child: Row(
+          //     children: <Widget>[
+          //       GestureDetector(
+          //         onTap: (){
+
+          //         },
+          //         child: SuggestionTile(
+          //           text: "Narendra Modi",
+          //           widths: 180,
+          //         ),
+          //       ),
+          //       Padding(
+          //         padding: EdgeInsets.symmetric(horizontal: 5),
+          //       ),
+          //       SuggestionTile(
+          //         text: "Movies",
+          //         widths: 100,
+          //       )
+          //     ],
+          //   ),
+          // ),
+          // Padding(
+          //   padding: EdgeInsets.symmetric(vertical: 5),
+          // ),
+          // Container(
+          //   width: width / 1.1,
+          //   child: Row(
+          //     children: <Widget>[
+          //       SuggestionTile(
+          //         text: "Cricket",
+          //         widths: 100,
+          //       ),
+          //       Padding(
+          //         padding: EdgeInsets.symmetric(horizontal: 5),
+          //       ),
+          //       SuggestionTile(
+          //         text: "Elon Musk",
+          //         widths: 130,
+          //       ),
+          //       Padding(
+          //         padding: EdgeInsets.symmetric(horizontal: 5),
+          //       ),
+          //       SuggestionTile(
+          //         text: "Apple",
+          //         widths: 100,
+          //       )
+          //     ],
+          //   ),
+          // )
         ],
       ),
     );
